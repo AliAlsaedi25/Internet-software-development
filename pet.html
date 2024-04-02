@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Adoption Frontend</title>
+    </head>
+    <body>
+        <h1>Assignet 3 - Adoption Frontend</h1>
+
+        <div>
+            <h3>Pets Available for Adoption</h3>
+            <ul id="petsList"></ul>
+        </div>
+
+        <div>
+            <h3>Get Details of a Pet</h3>
+            <input type="text" id="PetDetails" placeholder="Enter Pet Name">
+            <button onclick="getPetDetails()">Get Details</button>
+            <p id="PetSpecies"></p>
+            <p id="PetBreed"></p>
+            <p id="PetAge"></p>
+        </div>
+
+        <div>
+            <h3>Adopt a Pet</h3>
+            <input type="text" id="adoptPetName" placeholder="Enter Pet Name">
+            <button onclick="adoptPet()">Adopt Pet</button>
+        </div>
+
+        <div>
+            <h3>Update Pet Details</h3>
+            <input type="text" id="updatePetName" placeholder="Pet Name to Edit"> <br>
+            <input type="text" id="updateSpecies" placeholder="What is the Species"> <br>
+            <input type="text" id="updateBreed" placeholder="What is the Breed"> <br>
+            <input type="text" id="updateAge" placeholder="What is the Age"> <br>
+            <button onclick="updateDetails()">Update Pet</button>            
+        </div>
+
+
+        <div>
+            <h3>Add A Pet</h3>
+            <input type="text" id="addPetName" placeholder="Pet Name"> <br>
+            <input type="text" id="addSpecies" placeholder="Species"> <br>
+            <input type="text" id="addBreed" placeholder="Breed"> <br>
+            <input type="text" id="addAge" placeholder="Age"> <br>
+            <button onclick="addPet()">Add Pet</button> 
+        </div>
+
+        <script>
+            const url = "http://127.0.0.1:8000";
+
+            async function fetchPets(){
+                let response = await fetch(url);
+                let pets = await response.json();
+                let petsList = document.getElementById("petsList");
+                petsList.innerHTML = '';
+                for(i = 0; i < pets.length; i++){
+                    let li = document.createElement("li");
+                    li.textContent = pets[i];
+                    petsList.appendChild(li);
+                }
+            }
+
+            async function getPetDetails(){
+                let petName = document.getElementById("PetDetails").value;
+                let response = await fetch(url + "/" + petName);
+                let details = await response.json()
+                document.getElementById("PetSpecies").innerHTML = "Species: " + details["species"]; 
+                document.getElementById("PetBreed").innerHTML = "Breed: " + details["breed"]; 
+                document.getElementById("PetAge").innerHTML = "Age: " + details["age"]; 
+            }
+
+            async function adoptPet(){
+                let petName = document.getElementById("adoptPetName");
+                await fetch(url + "/" + petName.value, {method: "DELETE"});
+                petName.value = "";
+                fetchPets();
+            }
+
+            async function updateDetails(){
+                let petName = document.getElementById("updatePetName").value;
+                let obj = {
+                    "species": document.getElementById("updateSpecies").value,
+                    "breed": document.getElementById("updateBreed").value,
+                    "age": document.getElementById("updateAge").value,
+                };
+
+                await fetch(url + "/" + petName, {
+                    method: "PUT",
+                    body: JSON.stringify(obj)
+                });
+
+                fetchPets();
+            }
+
+            async function addPet(){
+                let petName = document.getElementById("addPetName").value;
+                let obj = {
+                    "species": document.getElementById("addSpecies").value,
+                    "breed": document.getElementById("addBreed").value,
+                    "age": document.getElementById("addAge").value,
+                };
+
+                await fetch(url + "/" + petName, {
+                    method: "POST",
+                    body: JSON.stringify(obj)
+                });
+
+                fetchPets();
+            }
+
+            fetchPets();
+        </script>
+    </body>
+</html>

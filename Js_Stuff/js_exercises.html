@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Input Fields to JSON</title>
+</head>
+<body>
+    <h2>Input Fields to JSON</h2>
+    <form id="myForm">
+        <label for="state">State:  </label>
+        <input type="text" id="state" name="state"><br><br>
+        <label for="county">County:</label>
+        <input type="text" id="county" name="county"><br><br>
+        <label for="city">City:  </label>
+        <input type="text" id="city" name="city"><br><br>
+        <input type="button" value="Submit" onclick="assembleJSON()">
+    </form>
+    <br>
+    <label for="jsonOutput">JSON goes here:</label>
+    <input type="text" id="jsonOutput" readonly>
+    
+    <script>
+        function assembleJSON() {
+            var field1Value = document.getElementById("state").value;
+            var field2Value = document.getElementById("county").value;
+            var field3Value = document.getElementById("city").value;
+
+            var jsonObject = {
+                state: field1Value,
+                county: field2Value,
+                city: field3Value
+            };
+
+            var jsonString = JSON.stringify(jsonObject);
+            document.getElementById("jsonOutput").value = jsonString;
+        }
+    </script>
+</body>
+</html>
+
