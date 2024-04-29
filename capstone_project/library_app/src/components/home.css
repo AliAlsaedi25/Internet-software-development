@@ -1,0 +1,119 @@
+.centered-container {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: flex-start; /* Changed alignment */
+  height: 100vh;
+  background-color: #f3f4f6;
+}
+
+.link-button {
+  margin: 5px;
+  padding: 15px 25px; /* Adjusted button padding */
+  background-color: #b22047; /* Changed button color */
+  color: white;
+  border: none;
+  border-radius: 10px; /* Changed button shape */
+  text-decoration: none;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 3.0s ease;
+}
+
+.link-button:hover {
+  background-color: black; /* Changed button hover color */
+}
+
+.container {
+  text-align: center;
+  position: relative;
+}
+
+
+.button-home {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  padding: 10px 20px;
+  background-color: #b22047;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background-color 3.0s ease;
+}
+
+.button-home:hover {
+  background-color: black;
+}
+
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background-color: #ffffff;
+  border: 1px solid #dddddd;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+th, td {
+  padding: 15px;
+  text-align: center;
+  border: none;
+}
+
+th {
+  background-color: #b22047;
+  color: #ffffff;
+}
+
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+tr:hover {
+  background-color: #ffc0cb;
+}
+
+
+.form-section {
+  margin-top: 20px;
+}
+
+label {
+  margin-right: 10px;
+}
+
+input[type="text"], select {
+  padding: 10px;
+  margin: 10px 0;
+  display: block;
+  width: 100%;
+  border: 1px solid #cccccc;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+input[type="submit"], .button-checkout {
+  padding: 12px 24px;
+  border: none;
+  cursor: pointer;
+  border-radius: 25px;
+  background-color: #b22047;
+  color: white;
+  font-size: 18px;
+  transition: background-color 3.0s ease;
+}
+
+input[type="submit"]:hover, .button-checkout:hover {
+  background-color: black;
+}
+
+.message-box {
+  color: #ffffff;
+  background-color: #b22047;
+  margin: 20px 0;
+  padding: 15px;
+  border-radius: 15px;
+}
